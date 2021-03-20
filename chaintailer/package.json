@@ -1,0 +1,39 @@
+{
+  "name": "connector-comm-server",
+  "version": "0.1.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "lint": "npx eslint --fix .",
+    "start": "node index.js",
+    "dev": "NODE_ENV=development node local.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/unchainedshop/connector-akeneo.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/unchainedshop/connector-akeneo/issues"
+  },
+  "homepage": "https://github.com/unchainedshop/connector-akeneo#readme",
+  "devDependencies": {
+    "eslint": "^7.11.0",
+    "eslint-config-prettier": "^6.12.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "mongodb-memory-server": "^6.9.2",
+    "prettier": "2.1.2"
+  },
+  "dependencies": {
+    "abort-controller": "^3.0.0",
+    "dotenv-extended": "^2.9.0",
+    "mongodb": "^3.6.2",
+    "neat-csv": "^6.0.1",
+    "node-fetch": "^2.6.1",
+    "object-hash": "^2.0.3",
+    "sanitize-html": "^2.3.2",
+    "slugify": "^1.4.7"
+  }
+}
