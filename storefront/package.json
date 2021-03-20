@@ -1,0 +1,53 @@
+{
+  "name": "storefront",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "SUPPRESS_ENV_ERRORS=1 next build",
+    "dev:local": "UNCHAINED_ENDPOINT=http://localhost:4010/graphql next dev",
+    "dev": "next dev",
+    "format": "npm run lint -- --fix",
+    "lint": "eslint --ext .js,.jsx,.ts,.tsx --quiet .",
+    "test": "npm run lint && npm run typecheck",
+    "typecheck": "tsc --noEmit",
+    "start": "next start",
+    "storybook": "start-storybook -p 6006",
+    "storybook:build": "build-storybook"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.3.6",
+    "apollo-server-micro": "^2.19.0",
+    "apollo-server-plugin-response-cache": "^0.5.6",
+    "apollo-upload-client": "^13.0.0",
+    "dotenv-extended": "^2.9.0",
+    "geoip-country": "^4.0.43",
+    "graphql": "^14.7.0",
+    "graphql-tools": "^4.0.8",
+    "isomorphic-unfetch": "^3.1.0",
+    "next": "^10.0.3",
+    "next-with-apollo": "^5.1.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-hook-form": "^5.7.2"
+  },
+  "devDependencies": {
+    "@storybook/addon-actions": "6.0.5",
+    "@storybook/addon-links": "6.0.5",
+    "@storybook/addons": "6.0.5",
+    "@storybook/react": "6.0.5",
+    "@types/node": "^14.14.9",
+    "@types/react": "^16.14.2",
+    "@typescript-eslint/eslint-plugin": "^4.8.2",
+    "@typescript-eslint/parser": "^2.34.0",
+    "babel-loader": "^8.2.1",
+    "cross-fetch": "^3.1.2",
+    "eslint": "^7.14.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "^3.1.4",
+    "eslint-plugin-react": "^7.21.5",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "prettier": "^2.2.0",
+    "typescript": "^3.9.7"
+  }
+}

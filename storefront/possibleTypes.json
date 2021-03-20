@@ -1,0 +1,1 @@
+{"OrderDelivery":["OrderDeliveryShipping","OrderDeliveryPickUp"],"OrderDiscountable":["OrderDeliveryDiscount","OrderPaymentDiscount","OrderItemDiscount","OrderGlobalDiscount"],"OrderPayment":["OrderPaymentCard","OrderPaymentInvoice","OrderPaymentGeneric"],"Product":["PlanProduct","ConfigurableProduct","SimpleProduct","BundleProduct"]}
