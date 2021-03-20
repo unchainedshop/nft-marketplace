@@ -20,8 +20,7 @@ const {
 } = process.env;
 
 module.exports = {
-  serverRuntimeConfig: {
-  },
+  serverRuntimeConfig: {},
   publicRuntimeConfig: {
     FRONTEND_URL,
     GRAPHQL_ENDPOINT,

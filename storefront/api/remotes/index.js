@@ -7,9 +7,7 @@ const {
 
 export default async () => {
   // eslint-disable-next-line no-undef
-  const [unchainedSchema] = await Promise.all([
-    buildUnchainedSchema()
-  ]);
+  const [unchainedSchema] = await Promise.all([buildUnchainedSchema()]);
 
   const throwInProduction =
     NODE_ENV === 'production' && !SKIP_INVALID_REMOTES
