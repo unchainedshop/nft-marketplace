@@ -36,4 +36,4 @@ ENV NODE_ENV production
 
 EXPOSE 3000
 USER meteor
-CMD node main.js
+CMD node -r ./file_env.js main.js
