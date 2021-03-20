@@ -1,0 +1,7 @@
+dockercfg
+codeship.aes
+.env
+.DS_Store
+credentials.env
+node_modules
+.eslintcache

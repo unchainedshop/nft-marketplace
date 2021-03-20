@@ -1,0 +1,53 @@
+- name: Build Weng Website
+  type: parallel
+  encrypted_dockercfg_path: dockercfg.encrypted
+  steps:
+    - name: Engine
+      type: serial
+      steps:
+        - name: Pre-flight Engine in order to cache the docker build (workaround)
+          service: engine-pre-flight
+          command: true
+        - name: Build
+          service: engine
+          type: push
+          image_name: registry.ucc.dev/cryptomarket/engine
+          image_tag: "{{.Branch}}-latest"
+          registry: registry.ucc.dev
+        - name: Tag image as latest
+          service: engine
+          tag: develop
+          type: push
+          image_name: registry.ucc.dev/cryptomarket/engine
+          image_tag: "next"
+          registry: registry.ucc.dev
+        - name: Tag image as stable
+          service: engine
+          tag: master
+          type: push
+          image_name: registry.ucc.dev/cryptomarket/engine
+          image_tag: "stable"
+          registry: registry.ucc.dev
+    - name: Chaintailer
+      type: serial
+      steps:
+        - name: Build
+          service: chaintailer
+          type: push
+          image_name: registry.ucc.dev/cryptomarket/chaintailer
+          image_tag: "{{.Branch}}-latest"
+          registry: registry.ucc.dev
+        - name: Tag image as latest
+          service: chaintailer
+          tag: develop
+          type: push
+          image_name: registry.ucc.dev/cryptomarket/chaintailer
+          image_tag: "next"
+          registry: registry.ucc.dev
+        - name: Tag image as stable
+          service: chaintailer
+          tag: master
+          type: push
+          image_name: registry.ucc.dev/cryptomarket/chaintailer
+          image_tag: "stable"
+          registry: registry.ucc.dev

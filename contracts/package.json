@@ -1,0 +1,43 @@
+{
+  "name": "@private/contracts",
+  "private": true,
+  "main": "./index.ts",
+  "devDependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.1",
+    "@nomiclabs/hardhat-waffle": "^2.0.1",
+    "@openzeppelin/contracts": "^3.4.0",
+    "@typechain/ethers-v5": "^5.0.0",
+    "@types/chai": "^4.2.15",
+    "@types/mocha": "^8.2.1",
+    "@types/node": "^14.14.31",
+    "chai": "^4.3.0",
+    "ethereum-waffle": "^3.2.2",
+    "ethers": "^5.0.31",
+    "hardhat": "^2.0.10",
+    "hardhat-deploy": "^0.7.0-beta.45",
+    "hardhat-deploy-ethers": "^0.3.0-beta.7",
+    "hardhat-typechain": "^0.3.5",
+    "prettier": "2.2.1",
+    "ts-generator": "^0.1.1",
+    "ts-morph": "^9.1.0",
+    "ts-node": "^9.1.1",
+    "typechain": "^4.0.1",
+    "typescript": "^4.1.5"
+  },
+  "scripts": {
+    "format": "prettier --write .",
+    "compile": "hardhat compile",
+    "postinstall": "npm run compile",
+    "test": "hardhat test",
+    "node": "hardhat node",
+    "hardhat": "hardhat --network localhost",
+    "deploy:local": "hardhat run --network localhost scripts/deploy.js",
+    "deploy:goerli": "hardhat run --network goerli scripts/deploy.js",
+    "deploy:rinkeby": "hardhat run --network rinkeby scripts/deploy.js",
+    "deploy:mainnet": "hardhat run --network mainnet scripts/deploy.js"
+  },
+  "dependencies": {
+    "@ethersproject/bignumber": "^5.0.14",
+    "dotenv-extended": "^2.9.0"
+  }
+}
