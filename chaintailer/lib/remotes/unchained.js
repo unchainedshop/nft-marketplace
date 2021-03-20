@@ -15,7 +15,7 @@ const authenticate = async function authenticate({
     query:
       "mutation login($email: String!, $password: String) {\n  loginWithPassword(email: $email, plainPassword: $password) {\n    token\n  }\n}\n",
   });
-  const result = await fetch(`${endpoint}/graphql`, {
+  const result = await fetch(`${endpoint}api/graphql`, {
     method: "POST",
     headers,
     body,

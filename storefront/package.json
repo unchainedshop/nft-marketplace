@@ -10,7 +10,7 @@
     "lint": "eslint --ext .js,.jsx,.ts,.tsx --quiet .",
     "test": "npm run lint && npm run typecheck",
     "typecheck": "tsc --noEmit",
-    "start": "next start",
+    "start": "next start"
   },
   "dependencies": {
     "@apollo/client": "^3.3.6",

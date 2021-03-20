@@ -24,6 +24,7 @@ module.exports = {
   },
   publicRuntimeConfig: {
     FRONTEND_URL,
+    GRAPHQL_ENDPOINT,
     NODE_ENV,
     SKIP_INVALID_REMOTES: JSON.parse(SKIP_INVALID_REMOTES || 'false'),
     UNCHAINED_ENDPOINT,
