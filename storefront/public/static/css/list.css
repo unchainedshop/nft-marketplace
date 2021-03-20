@@ -1,0 +1,52 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale3d(0.3, 0.3, 0.3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+.zoomIn {
+  animation-name: zoomIn;
+}
+
+.list-item:hover,
+.list-item:focus {
+  text-decoration: none;
+}
+
+.list-item:hover .list-item-image,
+.list-item:focus .list-item-image {
+  opacity: 0.35;
+}
+
+.list-item-image {
+  position: relative;
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+.list-item-image {
+  animation: zoomIn 0.3s, fadeIn 0.5s;
+}
+
+.list-item-text {
+  animation: fadeIn 1s;
+}
