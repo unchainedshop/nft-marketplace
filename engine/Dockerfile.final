@@ -10,6 +10,8 @@ RUN NODE_ENV=production npm install
 
 # Copy the app
 COPY --from=bundler /bundle /webapp/
+COPY --from=bundler /source/file_env.js  /webapp
+
 RUN NODE_ENV=production npm run install --production
 WORKDIR /webapp
 
