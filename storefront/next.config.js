@@ -1,5 +1,6 @@
 /* eslint-disable no-undef */
-
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const withTM = require('next-transpile-modules')(['@private/contracts']);
 console.log(process.version);
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -19,7 +20,7 @@ const {
   UNCHAINED_ENDPOINT,
 } = process.env;
 
-module.exports = {
+module.exports = withTM({
   serverRuntimeConfig: {},
   publicRuntimeConfig: {
     FRONTEND_URL,
@@ -28,4 +29,4 @@ module.exports = {
     SKIP_INVALID_REMOTES: JSON.parse(SKIP_INVALID_REMOTES || 'false'),
     UNCHAINED_ENDPOINT,
   },
-};
+});
