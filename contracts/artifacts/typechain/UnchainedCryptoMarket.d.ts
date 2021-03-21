@@ -26,7 +26,9 @@ interface UnchainedCryptoMarketInterface extends ethers.utils.Interface {
     "approve(address,uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
     "baseURI()": FunctionFragment;
+    "contentHashes(bytes32)": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
+    "hashToTokenId(bytes32)": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
     "mintAndBuy(address,bytes32)": FunctionFragment;
     "name()": FunctionFragment;
@@ -55,8 +57,16 @@ interface UnchainedCryptoMarketInterface extends ethers.utils.Interface {
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
   encodeFunctionData(functionFragment: "baseURI", values?: undefined): string;
   encodeFunctionData(
+    functionFragment: "contentHashes",
+    values: [BytesLike]
+  ): string;
+  encodeFunctionData(
     functionFragment: "getApproved",
     values: [BigNumberish]
+  ): string;
+  encodeFunctionData(
+    functionFragment: "hashToTokenId",
+    values: [BytesLike]
   ): string;
   encodeFunctionData(
     functionFragment: "isApprovedForAll",
@@ -127,7 +137,15 @@ interface UnchainedCryptoMarketInterface extends ethers.utils.Interface {
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "baseURI", data: BytesLike): Result;
   decodeFunctionResult(
+    functionFragment: "contentHashes",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
     functionFragment: "getApproved",
+    data: BytesLike
+  ): Result;
+  decodeFunctionResult(
+    functionFragment: "hashToTokenId",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -236,6 +254,16 @@ export class UnchainedCryptoMarket extends Contract {
 
     "baseURI()"(overrides?: CallOverrides): Promise<[string]>;
 
+    contentHashes(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
+
+    "contentHashes(bytes32)"(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[boolean]>;
+
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -245,6 +273,16 @@ export class UnchainedCryptoMarket extends Contract {
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[string]>;
+
+    hashToTokenId(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
+
+    "hashToTokenId(bytes32)"(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<[BigNumber]>;
 
     isApprovedForAll(
       owner: string,
@@ -435,6 +473,13 @@ export class UnchainedCryptoMarket extends Contract {
 
   "baseURI()"(overrides?: CallOverrides): Promise<string>;
 
+  contentHashes(arg0: BytesLike, overrides?: CallOverrides): Promise<boolean>;
+
+  "contentHashes(bytes32)"(
+    arg0: BytesLike,
+    overrides?: CallOverrides
+  ): Promise<boolean>;
+
   getApproved(
     tokenId: BigNumberish,
     overrides?: CallOverrides
@@ -444,6 +489,13 @@ export class UnchainedCryptoMarket extends Contract {
     tokenId: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
+
+  hashToTokenId(arg0: BytesLike, overrides?: CallOverrides): Promise<BigNumber>;
+
+  "hashToTokenId(bytes32)"(
+    arg0: BytesLike,
+    overrides?: CallOverrides
+  ): Promise<BigNumber>;
 
   isApprovedForAll(
     owner: string,
@@ -628,6 +680,13 @@ export class UnchainedCryptoMarket extends Contract {
 
     "baseURI()"(overrides?: CallOverrides): Promise<string>;
 
+    contentHashes(arg0: BytesLike, overrides?: CallOverrides): Promise<boolean>;
+
+    "contentHashes(bytes32)"(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<boolean>;
+
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -637,6 +696,16 @@ export class UnchainedCryptoMarket extends Contract {
       tokenId: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
+
+    hashToTokenId(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "hashToTokenId(bytes32)"(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
 
     isApprovedForAll(
       owner: string,
@@ -847,6 +916,16 @@ export class UnchainedCryptoMarket extends Contract {
 
     "baseURI()"(overrides?: CallOverrides): Promise<BigNumber>;
 
+    contentHashes(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "contentHashes(bytes32)"(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -854,6 +933,16 @@ export class UnchainedCryptoMarket extends Contract {
 
     "getApproved(uint256)"(
       tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    hashToTokenId(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<BigNumber>;
+
+    "hashToTokenId(bytes32)"(
+      arg0: BytesLike,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -1050,6 +1139,16 @@ export class UnchainedCryptoMarket extends Contract {
 
     "baseURI()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
+    contentHashes(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "contentHashes(bytes32)"(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -1057,6 +1156,16 @@ export class UnchainedCryptoMarket extends Contract {
 
     "getApproved(uint256)"(
       tokenId: BigNumberish,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    hashToTokenId(
+      arg0: BytesLike,
+      overrides?: CallOverrides
+    ): Promise<PopulatedTransaction>;
+
+    "hashToTokenId(bytes32)"(
+      arg0: BytesLike,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 

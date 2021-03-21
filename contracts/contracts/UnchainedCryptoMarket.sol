@@ -15,7 +15,8 @@ contract UnchainedCryptoMarket is Context, Ownable, ERC721 {
 
     uint256 public pricePerToken;
 
-    mapping(bytes32 => bool) private _contentHashes;
+    mapping(bytes32 => bool) public contentHashes;
+    mapping(bytes32 => uint256) public hashToTokenId;
     mapping(uint256 => bytes32) public tokenContentHashes;
 
     constructor(uint256 pricePerToken_)
@@ -27,10 +28,11 @@ contract UnchainedCryptoMarket is Context, Ownable, ERC721 {
 
     function mintAndBuy(address to, bytes32 contentHash) public payable {
         require(msg.value == pricePerToken, 'Min price not met');
-        require(!_contentHashes[contentHash], 'Media already minted');
+        require(!contentHashes[contentHash], 'Media already minted');
         uint256 tokenId = totalSupply();
         _safeMint(to, tokenId);
-        _contentHashes[contentHash] = true;
+        contentHashes[contentHash] = true;
+        hashToTokenId[contentHash] = tokenId;
         tokenContentHashes[tokenId] = contentHash;
     }
 
