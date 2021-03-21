@@ -18,7 +18,10 @@ const ProductListItem = ({ product }) => {
               <i>{product?.texts?.title}</i>
             </small>
             <small className="mt-2 d-block">
-              {product?.simulatedPrice?.price}
+              ETH{' '}
+              {product?.simulatedPrice?.price
+                ? product?.simulatedPrice?.price?.amount / 100
+                : 0}{' '}
             </small>
           </div>
         </a>

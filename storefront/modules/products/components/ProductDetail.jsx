@@ -1,6 +1,31 @@
+import { ethers } from 'ethers';
+import { useEffect, useState } from 'react';
+import { useAppContext } from '../../ethereum/AppContextWrapper';
 import getProductMediaUrl from '../utils/getProductMediaUrl';
 
 const ProductDetail = ({ product, onClick }) => {
+  const [owner, setOwner] = useState();
+  const { readContract } = useAppContext();
+
+  useEffect(() => {
+    if (readContract) {
+      (async () => {
+        const contentHex = ethers.utils.formatBytes32String(product._id);
+        const contentHash = ethers.utils.sha256(contentHex);
+        const contentHashBytes = ethers.utils.arrayify(contentHash);
+        const isSold = await readContract.contentHashes(contentHashBytes);
+        const tokenId = await readContract.hashToTokenId(contentHashBytes);
+
+        // console.log(tokenId, isSold);
+        // if (!isSold) {
+        //   setOwner(await readContract.ownerOf(tokenId));
+        // } else {
+        //   setOwner(null);
+        // }
+      })();
+    }
+  }, [readContract]);
+
   return (
     <div className="row">
       <div className="col-md-8">
