@@ -45,7 +45,7 @@ export const AppContext = React.createContext<{
   addTransaction: () => null,
   tokens: [],
   recordToken: () => null,
-  mint: () => null,
+  mint: async (h) => !!h,
 });
 
 export const useAppContext = () => useContext(AppContext);
