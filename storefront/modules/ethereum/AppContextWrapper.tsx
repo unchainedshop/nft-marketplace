@@ -81,9 +81,7 @@ export const AppContextWrapper = ({ children }) => {
     (async () => {
       const scopedProvider = ethereum
         ? new ethers.providers.Web3Provider(ethereum)
-        : ethers.getDefaultProvider('rinkeby', {
-            alchemy: 'IAShCvvktlU_ZEHJOvhLYXngadTDjBdX',
-          });
+        : ethers.getDefaultProvider('https://rpc.slock.it/goerli');
 
       setProvider(scopedProvider);
 
@@ -184,6 +182,8 @@ export const AppContextWrapper = ({ children }) => {
     addTransaction({ price: ethers.utils.parseEther('0.1'), tx });
 
     alert('Mint is on the way');
+
+    return true;
   };
 
   return (
