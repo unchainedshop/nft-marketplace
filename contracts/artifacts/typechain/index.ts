@@ -9,7 +9,7 @@ export type { IERC721 } from "./IERC721";
 export type { IERC721Enumerable } from "./IERC721Enumerable";
 export type { IERC721Metadata } from "./IERC721Metadata";
 export type { IERC721Receiver } from "./IERC721Receiver";
-export type { LissajousToken } from "./LissajousToken";
+export type { UnchainedCryptoMarket } from "./UnchainedCryptoMarket";
 
 export { Ownable__factory } from "./factories/Ownable__factory";
 export { ERC165__factory } from "./factories/ERC165__factory";
@@ -19,4 +19,4 @@ export { IERC721__factory } from "./factories/IERC721__factory";
 export { IERC721Enumerable__factory } from "./factories/IERC721Enumerable__factory";
 export { IERC721Metadata__factory } from "./factories/IERC721Metadata__factory";
 export { IERC721Receiver__factory } from "./factories/IERC721Receiver__factory";
-export { LissajousToken__factory } from "./factories/LissajousToken__factory";
+export { UnchainedCryptoMarket__factory } from "./factories/UnchainedCryptoMarket__factory";
