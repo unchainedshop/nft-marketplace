@@ -1,20 +1,25 @@
 import { useRouter } from 'next/router';
 
-import Footer from '../../modules/layout/components/Footer';
 import Header from '../../modules/layout/components/Header';
 import useProductDetailQuery from '../../modules/products/hooks/useProductDetailQuery';
+import ProductDetail from '../../modules/products/components/ProductDetail';
 
-const ProductDetail = () => {
+const ProductDetailView = () => {
   const router = useRouter();
-  const { product } = useProductDetailQuery({ slug: router.query.slug });
+  const { product, loading } = useProductDetailQuery({ slug: router.query.slug });
+
+  const handleClick = async () => {
+  
+  };
 
   return (
     <div className="container">
       <Header />
-      <h1>Detail</h1>
-      <Footer />
+      <div className="container mt-5">
+        {!product ? <span>loading...</span> : <ProductDetail product={product} onClick={handleClick} />}
+      </div>
     </div>
   );
 };
 
-export default ProductDetail;
+export default ProductDetailView;

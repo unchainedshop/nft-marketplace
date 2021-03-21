@@ -6,7 +6,7 @@ const Header = () => {
       <div className="container d-flex justify-content-between align-items-center flex-wrap">
         <Link href="/">
           <a className="color-brand">
-            <h3 className="my-2 mr-2">musky.memes</h3>
+            <img src="static/img/muskies.memes.png"/>
           </a>
         </Link>
       </div>

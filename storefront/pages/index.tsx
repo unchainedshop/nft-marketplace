@@ -7,12 +7,11 @@ import Header from '../modules/layout/components/Header';
 const Home = () => (
   <div>
     <Head>
-      <title>Crypto Market</title>
+      <title>Muskies.memes</title>
     </Head>
     <div className="container">
       <Header />
       <ProductList />
-      <Footer />
     </div>
   </div>
 );

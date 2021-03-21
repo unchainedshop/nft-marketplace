@@ -1,5 +1,4 @@
 
-
 const mapForwardHeaders = ({ headers, ...req }) => {
   const ip = headers['x-real-ip']
     || headers['x-forwarded-for']
