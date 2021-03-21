@@ -16,6 +16,8 @@ const ProductDetailView = () => {
     return mint(product._id);
   };
 
+  console.log(product);
+
   return (
     <div className="container">
       <Header />
