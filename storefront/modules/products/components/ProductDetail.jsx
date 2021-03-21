@@ -16,12 +16,11 @@ const ProductDetail = ({ product, onClick }) => {
         const isSold = await readContract.contentHashes(contentHashBytes);
         const tokenId = await readContract.hashToTokenId(contentHashBytes);
 
-        // console.log(tokenId, isSold);
-        // if (!isSold) {
-        //   setOwner(await readContract.ownerOf(tokenId));
-        // } else {
-        //   setOwner(null);
-        // }
+        if (isSold) {
+          setOwner(await readContract.ownerOf(tokenId));
+        } else {
+          setOwner(null);
+        }
       })();
     }
   }, [readContract]);
@@ -45,13 +44,25 @@ const ProductDetail = ({ product, onClick }) => {
             <p key={i}>{line}</p>
           ))}
         </div>
-        <button
-          type="button"
-          className="button button--primary button--big mb-5 text-uppercase"
-          onClick={onClick}
-        >
-          Mint
-        </button>
+        {!owner ? (
+          <button
+            type="button"
+            className="button button--primary button--big mb-5 text-uppercase"
+            onClick={onClick}
+          >
+            Mint
+          </button>
+        ) : (
+          <>
+            <button
+              type="button"
+              className="button button--secondary button--big mb-5 text-uppercase"
+            >
+              Already sold.
+            </button>
+            <div>Onwer: {owner}</div>
+          </>
+        )}
       </div>
     </div>
   );
