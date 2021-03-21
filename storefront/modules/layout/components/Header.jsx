@@ -6,8 +6,8 @@ const Header = () => {
       <div className="container d-flex justify-content-between align-items-center flex-wrap">
         <Link href="/">
         
-          <a className="color-brand">
-          <img src="https://i.ibb.co/8z94KVL/muskies-lol.png" alt="muskies-lol" border="0" />
+          <a className="color-brand m-0 p-0 d-block w-100 text-center" >
+          <h2 classNam="m-0 p-0" >  <i> Mint a Musky </i> </h2>
           </a>
         </Link>
       </div>
