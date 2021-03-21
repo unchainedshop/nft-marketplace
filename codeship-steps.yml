@@ -1,4 +1,4 @@
-- name: Build Weng Website
+- name: Build Muskies
   type: parallel
   encrypted_dockercfg_path: dockercfg.encrypted
   steps:
