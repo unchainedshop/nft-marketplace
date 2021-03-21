@@ -3,15 +3,15 @@
 pragma solidity ^0.7.3;
 
 import '@openzeppelin/contracts/access/Ownable.sol';
-import '@openzeppelin/contracts/math/SafeMath.sol';
+// import '@openzeppelin/contracts/math/SafeMath.sol';
 import '@openzeppelin/contracts/utils/Context.sol';
 import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
 
-import 'hardhat/console.sol';
+// import 'hardhat/console.sol';
 
 // https://docs.opensea.io/docs/metadata-standards
 contract UnchainedCryptoMarket is Context, Ownable, ERC721 {
-    using SafeMath for uint256;
+    // using SafeMath for uint256;
 
     uint256 public pricePerToken;
 
@@ -21,12 +21,6 @@ contract UnchainedCryptoMarket is Context, Ownable, ERC721 {
     constructor(uint256 pricePerToken_)
         ERC721('Unchained Cryptomarket NFT', 'UCNFT')
     {
-        uint256 id;
-        assembly {
-            id := chainid()
-        }
-        if (id == 56) revert('Nope!');
-        if (id == 97) revert('Nope!');
         _setBaseURI('https://musky.memes/api/token/');
         pricePerToken = pricePerToken_;
     }
