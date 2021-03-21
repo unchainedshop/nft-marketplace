@@ -4,8 +4,6 @@ import responseCachePlugin from 'apollo-server-plugin-response-cache';
 import mapForwardHeaders from './mapForwardHeaders';
 import unchainedSchema from './remotes/index';
 
-
-
 const createApolloServer = async () => {
   return new ApolloServer({
     schema: await unchainedSchema(),

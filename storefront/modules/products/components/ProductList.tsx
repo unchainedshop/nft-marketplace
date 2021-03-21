@@ -1,5 +1,5 @@
 import useProductListQuery from '../hooks/useProductListQuery';
-import ProductListItem from './ProductListItem'
+import ProductListItem from './ProductListItem';
 
 const ProductList = () => {
   const { products } = useProductListQuery();
@@ -9,9 +9,8 @@ const ProductList = () => {
       <div className="row">
         {products.map((product) => (
           <div key={product._id} className="col-sm-6 col-lg-6 mb-4 mx-auto">
-          <ProductListItem product={product} />
+            <ProductListItem product={product} />
           </div>
-          
         ))}
       </div>
     </div>
