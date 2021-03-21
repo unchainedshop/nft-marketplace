@@ -1,12 +1,14 @@
 import { ApolloServer } from 'apollo-server-micro';
 import responseCachePlugin from 'apollo-server-plugin-response-cache';
 
-import mergedSchema from './mergedSchema';
 import mapForwardHeaders from './mapForwardHeaders';
+import unchainedSchema from './remotes/index';
+
+
 
 const createApolloServer = async () => {
   return new ApolloServer({
-    schema: await mergedSchema(),
+    schema: await unchainedSchema(),
     introspection: true,
     cors: false,
     cacheControl: true,
