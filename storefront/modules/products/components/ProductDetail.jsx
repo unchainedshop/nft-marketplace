@@ -5,14 +5,14 @@ const ProductDetail = ({product, onClick}) => {
 
 
     return     (<div className="row">
-    <div className="col-md-6">
+    <div className="col-md-8">
       <img src={getProductMediaUrl(product)} />
     </div>
-    <div className="col-md-6">
-      <h2 className="px-2 mt-md-0">{product?.texts?.title}</h2>
+    <div className="col-md-4">
+      <h3 className="px-2 mt-md-0">{product?.texts?.title}</h3>
       <div className="p-2">
         <h3 className="my-0">
-          ETH {product?.simulatedPrice?.price?.amount / 100}{' '}
+          ETH {product?.simulatedPrice?.price ? product?.simulatedPrice?.price?.amount / 100 : 0}{' '}
         </h3>
         <h4 className="mb-0">{product?.texts?.subtitle}</h4>
         {product?.texts?.description?.split('\n').map((line, i) => (
