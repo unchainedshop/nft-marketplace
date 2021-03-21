@@ -46,6 +46,8 @@ task('mint', 'Mint a token for someone')
 // You need to export an object to set up your config
 // Go to https://hardhat.org/config/ to learn more
 
+console.log(process.env.RPC_ENDPOINT_RINKEBY, process.env.PRIVATE_KEY_RINKEBY);
+
 export default {
   solidity: '0.7.3',
   react: {

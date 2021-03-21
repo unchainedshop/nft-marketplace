@@ -90,9 +90,9 @@ export const AppContextWrapper = ({ children }) => {
 
       ethereum?.on('chainChanged', () => window.location.reload());
 
-      if (chainId !== 4) {
+      if (chainId !== 5) {
         alert(
-          `You are on ${chainIdMap[chainId]}. Please switch to Rinkeby or you won't be able to mint here`,
+          `You are on ${chainIdMap[chainId]}. Please switch to Goerli or you won't be able to mint here`,
         );
         return;
       }
