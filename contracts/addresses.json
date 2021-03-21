@@ -1,14 +1,5 @@
 {
-  "1": {
-    "LissajousToken": "0x0Ac9f2dde31eEee4fFb3f2DE5578FaE7C97B5755"
-  },
   "4": {
-    "LissajousToken": "0xF74523237FF7113e8C1DCcc3785e62D9E31Bd5C0"
-  },
-  "5": {
-    "LissajousToken": "0x327811d200D56cCeb7b3EA241B8434d719bB23aE"
-  },
-  "1337": {
-    "LissajousToken": "0xD1857A08fcE8f604835af98DBD24726f3dA0F355"
+    "UnchainedCryptoMarket": "0xEec2582810F6D12c712cCB6D4daF1370665c7Aba"
   }
 }

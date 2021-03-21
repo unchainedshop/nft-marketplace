@@ -21,41 +21,25 @@ import { BytesLike } from "@ethersproject/bytes";
 import { Listener, Provider } from "@ethersproject/providers";
 import { FunctionFragment, EventFragment, Result } from "@ethersproject/abi";
 
-interface LissajousTokenInterface extends ethers.utils.Interface {
+interface UnchainedCryptoMarketInterface extends ethers.utils.Interface {
   functions: {
-    "_priceIncreasePromille()": FunctionFragment;
     "approve(address,uint256)": FunctionFragment;
-    "aspectRatio(uint256)": FunctionFragment;
     "balanceOf(address)": FunctionFragment;
     "baseURI()": FunctionFragment;
-    "currentMinPrice()": FunctionFragment;
-    "endBlock()": FunctionFragment;
     "getApproved(uint256)": FunctionFragment;
-    "hashBlock(uint256)": FunctionFragment;
     "isApprovedForAll(address,address)": FunctionFragment;
-    "isBlockRainbow(uint256)": FunctionFragment;
-    "isHashRainbow(bytes32)": FunctionFragment;
-    "lissajousArguments(uint256)": FunctionFragment;
-    "minPrice(uint256)": FunctionFragment;
-    "mint(address,uint8)": FunctionFragment;
+    "mintAndBuy(address,bytes32)": FunctionFragment;
     "name()": FunctionFragment;
     "owner()": FunctionFragment;
     "ownerOf(uint256)": FunctionFragment;
-    "priceStepFromValue(uint256)": FunctionFragment;
-    "priceSteps(uint256)": FunctionFragment;
-    "rainbowFrequency()": FunctionFragment;
+    "pricePerToken()": FunctionFragment;
     "renounceOwnership()": FunctionFragment;
     "safeTransferFrom(address,address,uint256)": FunctionFragment;
     "setApprovalForAll(address,bool)": FunctionFragment;
-    "sortedColorList(uint256)": FunctionFragment;
-    "startBlock()": FunctionFragment;
     "supportsInterface(bytes4)": FunctionFragment;
     "symbol()": FunctionFragment;
     "tokenByIndex(uint256)": FunctionFragment;
-    "tokenColor(uint256)": FunctionFragment;
-    "tokenMintBlock(uint256)": FunctionFragment;
-    "tokenMintBlockHash(uint256)": FunctionFragment;
-    "tokenMintValue(uint256)": FunctionFragment;
+    "tokenContentHashes(uint256)": FunctionFragment;
     "tokenOfOwnerByIndex(address,uint256)": FunctionFragment;
     "tokenURI(uint256)": FunctionFragment;
     "totalSupply()": FunctionFragment;
@@ -65,30 +49,13 @@ interface LissajousTokenInterface extends ethers.utils.Interface {
   };
 
   encodeFunctionData(
-    functionFragment: "_priceIncreasePromille",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
     functionFragment: "approve",
     values: [string, BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "aspectRatio",
-    values: [BigNumberish]
   ): string;
   encodeFunctionData(functionFragment: "balanceOf", values: [string]): string;
   encodeFunctionData(functionFragment: "baseURI", values?: undefined): string;
   encodeFunctionData(
-    functionFragment: "currentMinPrice",
-    values?: undefined
-  ): string;
-  encodeFunctionData(functionFragment: "endBlock", values?: undefined): string;
-  encodeFunctionData(
     functionFragment: "getApproved",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "hashBlock",
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
@@ -96,24 +63,8 @@ interface LissajousTokenInterface extends ethers.utils.Interface {
     values: [string, string]
   ): string;
   encodeFunctionData(
-    functionFragment: "isBlockRainbow",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "isHashRainbow",
-    values: [BytesLike]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "lissajousArguments",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "minPrice",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "mint",
-    values: [string, BigNumberish]
+    functionFragment: "mintAndBuy",
+    values: [string, BytesLike]
   ): string;
   encodeFunctionData(functionFragment: "name", values?: undefined): string;
   encodeFunctionData(functionFragment: "owner", values?: undefined): string;
@@ -122,15 +73,7 @@ interface LissajousTokenInterface extends ethers.utils.Interface {
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "priceStepFromValue",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "priceSteps",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "rainbowFrequency",
+    functionFragment: "pricePerToken",
     values?: undefined
   ): string;
   encodeFunctionData(
@@ -146,14 +89,6 @@ interface LissajousTokenInterface extends ethers.utils.Interface {
     values: [string, boolean]
   ): string;
   encodeFunctionData(
-    functionFragment: "sortedColorList",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "startBlock",
-    values?: undefined
-  ): string;
-  encodeFunctionData(
     functionFragment: "supportsInterface",
     values: [BytesLike]
   ): string;
@@ -163,19 +98,7 @@ interface LissajousTokenInterface extends ethers.utils.Interface {
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
-    functionFragment: "tokenColor",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "tokenMintBlock",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "tokenMintBlockHash",
-    values: [BigNumberish]
-  ): string;
-  encodeFunctionData(
-    functionFragment: "tokenMintValue",
+    functionFragment: "tokenContentHashes",
     values: [BigNumberish]
   ): string;
   encodeFunctionData(
@@ -200,55 +123,23 @@ interface LissajousTokenInterface extends ethers.utils.Interface {
   ): string;
   encodeFunctionData(functionFragment: "withdraw", values?: undefined): string;
 
-  decodeFunctionResult(
-    functionFragment: "_priceIncreasePromille",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "approve", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "aspectRatio",
-    data: BytesLike
-  ): Result;
   decodeFunctionResult(functionFragment: "balanceOf", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "baseURI", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "currentMinPrice",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "endBlock", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "getApproved",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "hashBlock", data: BytesLike): Result;
   decodeFunctionResult(
     functionFragment: "isApprovedForAll",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(
-    functionFragment: "isBlockRainbow",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "isHashRainbow",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "lissajousArguments",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "minPrice", data: BytesLike): Result;
-  decodeFunctionResult(functionFragment: "mint", data: BytesLike): Result;
+  decodeFunctionResult(functionFragment: "mintAndBuy", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "name", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "owner", data: BytesLike): Result;
   decodeFunctionResult(functionFragment: "ownerOf", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "priceStepFromValue",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "priceSteps", data: BytesLike): Result;
-  decodeFunctionResult(
-    functionFragment: "rainbowFrequency",
+    functionFragment: "pricePerToken",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -264,11 +155,6 @@ interface LissajousTokenInterface extends ethers.utils.Interface {
     data: BytesLike
   ): Result;
   decodeFunctionResult(
-    functionFragment: "sortedColorList",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(functionFragment: "startBlock", data: BytesLike): Result;
-  decodeFunctionResult(
     functionFragment: "supportsInterface",
     data: BytesLike
   ): Result;
@@ -277,17 +163,8 @@ interface LissajousTokenInterface extends ethers.utils.Interface {
     functionFragment: "tokenByIndex",
     data: BytesLike
   ): Result;
-  decodeFunctionResult(functionFragment: "tokenColor", data: BytesLike): Result;
   decodeFunctionResult(
-    functionFragment: "tokenMintBlock",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "tokenMintBlockHash",
-    data: BytesLike
-  ): Result;
-  decodeFunctionResult(
-    functionFragment: "tokenMintValue",
+    functionFragment: "tokenContentHashes",
     data: BytesLike
   ): Result;
   decodeFunctionResult(
@@ -322,7 +199,7 @@ interface LissajousTokenInterface extends ethers.utils.Interface {
   getEvent(nameOrSignatureOrTopic: "Transfer"): EventFragment;
 }
 
-export class LissajousToken extends Contract {
+export class UnchainedCryptoMarket extends Contract {
   connect(signerOrProvider: Signer | Provider | string): this;
   attach(addressOrName: string): this;
   deployed(): Promise<this>;
@@ -333,13 +210,9 @@ export class LissajousToken extends Contract {
   removeAllListeners(eventName: EventFilter | string): this;
   removeListener(eventName: any, listener: Listener): this;
 
-  interface: LissajousTokenInterface;
+  interface: UnchainedCryptoMarketInterface;
 
   functions: {
-    _priceIncreasePromille(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    "_priceIncreasePromille()"(overrides?: CallOverrides): Promise<[BigNumber]>;
-
     approve(
       to: string,
       tokenId: BigNumberish,
@@ -352,16 +225,6 @@ export class LissajousToken extends Contract {
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    aspectRatio(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[number, number] & { height: number; width: number }>;
-
-    "aspectRatio(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[number, number] & { height: number; width: number }>;
-
     balanceOf(owner: string, overrides?: CallOverrides): Promise<[BigNumber]>;
 
     "balanceOf(address)"(
@@ -373,14 +236,6 @@ export class LissajousToken extends Contract {
 
     "baseURI()"(overrides?: CallOverrides): Promise<[string]>;
 
-    currentMinPrice(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    "currentMinPrice()"(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    endBlock(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    "endBlock()"(overrides?: CallOverrides): Promise<[BigNumber]>;
-
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -388,16 +243,6 @@ export class LissajousToken extends Contract {
 
     "getApproved(uint256)"(
       tokenId: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
-
-    hashBlock(
-      blockNumber: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
-
-    "hashBlock(uint256)"(
-      blockNumber: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[string]>;
 
@@ -413,73 +258,15 @@ export class LissajousToken extends Contract {
       overrides?: CallOverrides
     ): Promise<[boolean]>;
 
-    isBlockRainbow(
-      blockNumber: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[boolean]>;
-
-    "isBlockRainbow(uint256)"(
-      blockNumber: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[boolean]>;
-
-    isHashRainbow(
-      blockHash: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<[boolean]>;
-
-    "isHashRainbow(bytes32)"(
-      blockHash: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<[boolean]>;
-
-    lissajousArguments(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<
-      [number, number, number, number, number, boolean] & {
-        frequenceX: number;
-        frequenceY: number;
-        phaseShift: number;
-        totalSteps: number;
-        startStep: number;
-        rainbow: boolean;
-      }
-    >;
-
-    "lissajousArguments(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<
-      [number, number, number, number, number, boolean] & {
-        frequenceX: number;
-        frequenceY: number;
-        phaseShift: number;
-        totalSteps: number;
-        startStep: number;
-        rainbow: boolean;
-      }
-    >;
-
-    minPrice(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    "minPrice(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    mint(
+    mintAndBuy(
       to: string,
-      amount: BigNumberish,
+      contentHash: BytesLike,
       overrides?: PayableOverrides
     ): Promise<ContractTransaction>;
 
-    "mint(address,uint8)"(
+    "mintAndBuy(address,bytes32)"(
       to: string,
-      amount: BigNumberish,
+      contentHash: BytesLike,
       overrides?: PayableOverrides
     ): Promise<ContractTransaction>;
 
@@ -501,29 +288,9 @@ export class LissajousToken extends Contract {
       overrides?: CallOverrides
     ): Promise<[string]>;
 
-    priceStepFromValue(
-      valuePerToken: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
+    pricePerToken(overrides?: CallOverrides): Promise<[BigNumber]>;
 
-    "priceStepFromValue(uint256)"(
-      valuePerToken: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    priceSteps(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    "priceSteps(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    rainbowFrequency(overrides?: CallOverrides): Promise<[number]>;
-
-    "rainbowFrequency()"(overrides?: CallOverrides): Promise<[number]>;
+    "pricePerToken()"(overrides?: CallOverrides): Promise<[BigNumber]>;
 
     renounceOwnership(overrides?: Overrides): Promise<ContractTransaction>;
 
@@ -556,20 +323,6 @@ export class LissajousToken extends Contract {
       overrides?: Overrides
     ): Promise<ContractTransaction>;
 
-    sortedColorList(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
-
-    "sortedColorList(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
-
-    startBlock(overrides?: CallOverrides): Promise<[BigNumber]>;
-
-    "startBlock()"(overrides?: CallOverrides): Promise<[BigNumber]>;
-
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
@@ -594,45 +347,15 @@ export class LissajousToken extends Contract {
       overrides?: CallOverrides
     ): Promise<[BigNumber]>;
 
-    tokenColor(
-      tokenIndex: BigNumberish,
+    tokenContentHashes(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[string]>;
 
-    "tokenColor(uint256)"(
-      tokenIndex: BigNumberish,
+    "tokenContentHashes(uint256)"(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<[string]>;
-
-    tokenMintBlock(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    "tokenMintBlock(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    tokenMintBlockHash(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
-
-    "tokenMintBlockHash(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[string]>;
-
-    tokenMintValue(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
-
-    "tokenMintValue(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[BigNumber]>;
 
     tokenOfOwnerByIndex(
       owner: string,
@@ -689,10 +412,6 @@ export class LissajousToken extends Contract {
     "withdraw()"(overrides?: Overrides): Promise<ContractTransaction>;
   };
 
-  _priceIncreasePromille(overrides?: CallOverrides): Promise<BigNumber>;
-
-  "_priceIncreasePromille()"(overrides?: CallOverrides): Promise<BigNumber>;
-
   approve(
     to: string,
     tokenId: BigNumberish,
@@ -705,16 +424,6 @@ export class LissajousToken extends Contract {
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  aspectRatio(
-    tokenIndex: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<[number, number] & { height: number; width: number }>;
-
-  "aspectRatio(uint256)"(
-    tokenIndex: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<[number, number] & { height: number; width: number }>;
-
   balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
   "balanceOf(address)"(
@@ -726,14 +435,6 @@ export class LissajousToken extends Contract {
 
   "baseURI()"(overrides?: CallOverrides): Promise<string>;
 
-  currentMinPrice(overrides?: CallOverrides): Promise<BigNumber>;
-
-  "currentMinPrice()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-  endBlock(overrides?: CallOverrides): Promise<BigNumber>;
-
-  "endBlock()"(overrides?: CallOverrides): Promise<BigNumber>;
-
   getApproved(
     tokenId: BigNumberish,
     overrides?: CallOverrides
@@ -741,16 +442,6 @@ export class LissajousToken extends Contract {
 
   "getApproved(uint256)"(
     tokenId: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
-  hashBlock(
-    blockNumber: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
-  "hashBlock(uint256)"(
-    blockNumber: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
 
@@ -766,73 +457,15 @@ export class LissajousToken extends Contract {
     overrides?: CallOverrides
   ): Promise<boolean>;
 
-  isBlockRainbow(
-    blockNumber: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
-
-  "isBlockRainbow(uint256)"(
-    blockNumber: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
-
-  isHashRainbow(
-    blockHash: BytesLike,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
-
-  "isHashRainbow(bytes32)"(
-    blockHash: BytesLike,
-    overrides?: CallOverrides
-  ): Promise<boolean>;
-
-  lissajousArguments(
-    tokenIndex: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<
-    [number, number, number, number, number, boolean] & {
-      frequenceX: number;
-      frequenceY: number;
-      phaseShift: number;
-      totalSteps: number;
-      startStep: number;
-      rainbow: boolean;
-    }
-  >;
-
-  "lissajousArguments(uint256)"(
-    tokenIndex: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<
-    [number, number, number, number, number, boolean] & {
-      frequenceX: number;
-      frequenceY: number;
-      phaseShift: number;
-      totalSteps: number;
-      startStep: number;
-      rainbow: boolean;
-    }
-  >;
-
-  minPrice(
-    tokenIndex: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  "minPrice(uint256)"(
-    tokenIndex: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  mint(
+  mintAndBuy(
     to: string,
-    amount: BigNumberish,
+    contentHash: BytesLike,
     overrides?: PayableOverrides
   ): Promise<ContractTransaction>;
 
-  "mint(address,uint8)"(
+  "mintAndBuy(address,bytes32)"(
     to: string,
-    amount: BigNumberish,
+    contentHash: BytesLike,
     overrides?: PayableOverrides
   ): Promise<ContractTransaction>;
 
@@ -851,26 +484,9 @@ export class LissajousToken extends Contract {
     overrides?: CallOverrides
   ): Promise<string>;
 
-  priceStepFromValue(
-    valuePerToken: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
+  pricePerToken(overrides?: CallOverrides): Promise<BigNumber>;
 
-  "priceStepFromValue(uint256)"(
-    valuePerToken: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  priceSteps(arg0: BigNumberish, overrides?: CallOverrides): Promise<BigNumber>;
-
-  "priceSteps(uint256)"(
-    arg0: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  rainbowFrequency(overrides?: CallOverrides): Promise<number>;
-
-  "rainbowFrequency()"(overrides?: CallOverrides): Promise<number>;
+  "pricePerToken()"(overrides?: CallOverrides): Promise<BigNumber>;
 
   renounceOwnership(overrides?: Overrides): Promise<ContractTransaction>;
 
@@ -903,20 +519,6 @@ export class LissajousToken extends Contract {
     overrides?: Overrides
   ): Promise<ContractTransaction>;
 
-  sortedColorList(
-    arg0: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
-  "sortedColorList(uint256)"(
-    arg0: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
-  startBlock(overrides?: CallOverrides): Promise<BigNumber>;
-
-  "startBlock()"(overrides?: CallOverrides): Promise<BigNumber>;
-
   supportsInterface(
     interfaceId: BytesLike,
     overrides?: CallOverrides
@@ -941,45 +543,15 @@ export class LissajousToken extends Contract {
     overrides?: CallOverrides
   ): Promise<BigNumber>;
 
-  tokenColor(
-    tokenIndex: BigNumberish,
+  tokenContentHashes(
+    arg0: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
 
-  "tokenColor(uint256)"(
-    tokenIndex: BigNumberish,
+  "tokenContentHashes(uint256)"(
+    arg0: BigNumberish,
     overrides?: CallOverrides
   ): Promise<string>;
-
-  tokenMintBlock(
-    tokenIndex: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  "tokenMintBlock(uint256)"(
-    tokenIndex: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  tokenMintBlockHash(
-    tokenIndex: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
-  "tokenMintBlockHash(uint256)"(
-    tokenIndex: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<string>;
-
-  tokenMintValue(
-    tokenIndex: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
-
-  "tokenMintValue(uint256)"(
-    tokenIndex: BigNumberish,
-    overrides?: CallOverrides
-  ): Promise<BigNumber>;
 
   tokenOfOwnerByIndex(
     owner: string,
@@ -1033,10 +605,6 @@ export class LissajousToken extends Contract {
   "withdraw()"(overrides?: Overrides): Promise<ContractTransaction>;
 
   callStatic: {
-    _priceIncreasePromille(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "_priceIncreasePromille()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     approve(
       to: string,
       tokenId: BigNumberish,
@@ -1049,16 +617,6 @@ export class LissajousToken extends Contract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    aspectRatio(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[number, number] & { height: number; width: number }>;
-
-    "aspectRatio(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<[number, number] & { height: number; width: number }>;
-
     balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
 
     "balanceOf(address)"(
@@ -1070,14 +628,6 @@ export class LissajousToken extends Contract {
 
     "baseURI()"(overrides?: CallOverrides): Promise<string>;
 
-    currentMinPrice(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "currentMinPrice()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    endBlock(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "endBlock()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -1085,16 +635,6 @@ export class LissajousToken extends Contract {
 
     "getApproved(uint256)"(
       tokenId: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<string>;
-
-    hashBlock(
-      blockNumber: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<string>;
-
-    "hashBlock(uint256)"(
-      blockNumber: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
 
@@ -1110,73 +650,15 @@ export class LissajousToken extends Contract {
       overrides?: CallOverrides
     ): Promise<boolean>;
 
-    isBlockRainbow(
-      blockNumber: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
-    "isBlockRainbow(uint256)"(
-      blockNumber: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
-    isHashRainbow(
-      blockHash: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
-    "isHashRainbow(bytes32)"(
-      blockHash: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<boolean>;
-
-    lissajousArguments(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<
-      [number, number, number, number, number, boolean] & {
-        frequenceX: number;
-        frequenceY: number;
-        phaseShift: number;
-        totalSteps: number;
-        startStep: number;
-        rainbow: boolean;
-      }
-    >;
-
-    "lissajousArguments(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<
-      [number, number, number, number, number, boolean] & {
-        frequenceX: number;
-        frequenceY: number;
-        phaseShift: number;
-        totalSteps: number;
-        startStep: number;
-        rainbow: boolean;
-      }
-    >;
-
-    minPrice(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "minPrice(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    mint(
+    mintAndBuy(
       to: string,
-      amount: BigNumberish,
+      contentHash: BytesLike,
       overrides?: CallOverrides
     ): Promise<void>;
 
-    "mint(address,uint8)"(
+    "mintAndBuy(address,bytes32)"(
       to: string,
-      amount: BigNumberish,
+      contentHash: BytesLike,
       overrides?: CallOverrides
     ): Promise<void>;
 
@@ -1195,29 +677,9 @@ export class LissajousToken extends Contract {
       overrides?: CallOverrides
     ): Promise<string>;
 
-    priceStepFromValue(
-      valuePerToken: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    pricePerToken(overrides?: CallOverrides): Promise<BigNumber>;
 
-    "priceStepFromValue(uint256)"(
-      valuePerToken: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    priceSteps(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "priceSteps(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    rainbowFrequency(overrides?: CallOverrides): Promise<number>;
-
-    "rainbowFrequency()"(overrides?: CallOverrides): Promise<number>;
+    "pricePerToken()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     renounceOwnership(overrides?: CallOverrides): Promise<void>;
 
@@ -1250,20 +712,6 @@ export class LissajousToken extends Contract {
       overrides?: CallOverrides
     ): Promise<void>;
 
-    sortedColorList(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<string>;
-
-    "sortedColorList(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<string>;
-
-    startBlock(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "startBlock()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
@@ -1288,45 +736,15 @@ export class LissajousToken extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    tokenColor(
-      tokenIndex: BigNumberish,
+    tokenContentHashes(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
 
-    "tokenColor(uint256)"(
-      tokenIndex: BigNumberish,
+    "tokenContentHashes(uint256)"(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<string>;
-
-    tokenMintBlock(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "tokenMintBlock(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    tokenMintBlockHash(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<string>;
-
-    "tokenMintBlockHash(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<string>;
-
-    tokenMintValue(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "tokenMintValue(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
 
     tokenOfOwnerByIndex(
       owner: string,
@@ -1406,10 +824,6 @@ export class LissajousToken extends Contract {
   };
 
   estimateGas: {
-    _priceIncreasePromille(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "_priceIncreasePromille()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     approve(
       to: string,
       tokenId: BigNumberish,
@@ -1420,16 +834,6 @@ export class LissajousToken extends Contract {
       to: string,
       tokenId: BigNumberish,
       overrides?: Overrides
-    ): Promise<BigNumber>;
-
-    aspectRatio(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "aspectRatio(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
     ): Promise<BigNumber>;
 
     balanceOf(owner: string, overrides?: CallOverrides): Promise<BigNumber>;
@@ -1443,14 +847,6 @@ export class LissajousToken extends Contract {
 
     "baseURI()"(overrides?: CallOverrides): Promise<BigNumber>;
 
-    currentMinPrice(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "currentMinPrice()"(overrides?: CallOverrides): Promise<BigNumber>;
-
-    endBlock(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "endBlock()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -1458,16 +854,6 @@ export class LissajousToken extends Contract {
 
     "getApproved(uint256)"(
       tokenId: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    hashBlock(
-      blockNumber: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "hashBlock(uint256)"(
-      blockNumber: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -1483,55 +869,15 @@ export class LissajousToken extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    isBlockRainbow(
-      blockNumber: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "isBlockRainbow(uint256)"(
-      blockNumber: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    isHashRainbow(
-      blockHash: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "isHashRainbow(bytes32)"(
-      blockHash: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    lissajousArguments(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "lissajousArguments(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    minPrice(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "minPrice(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    mint(
+    mintAndBuy(
       to: string,
-      amount: BigNumberish,
+      contentHash: BytesLike,
       overrides?: PayableOverrides
     ): Promise<BigNumber>;
 
-    "mint(address,uint8)"(
+    "mintAndBuy(address,bytes32)"(
       to: string,
-      amount: BigNumberish,
+      contentHash: BytesLike,
       overrides?: PayableOverrides
     ): Promise<BigNumber>;
 
@@ -1553,29 +899,9 @@ export class LissajousToken extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    priceStepFromValue(
-      valuePerToken: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
+    pricePerToken(overrides?: CallOverrides): Promise<BigNumber>;
 
-    "priceStepFromValue(uint256)"(
-      valuePerToken: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    priceSteps(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "priceSteps(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    rainbowFrequency(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "rainbowFrequency()"(overrides?: CallOverrides): Promise<BigNumber>;
+    "pricePerToken()"(overrides?: CallOverrides): Promise<BigNumber>;
 
     renounceOwnership(overrides?: Overrides): Promise<BigNumber>;
 
@@ -1608,20 +934,6 @@ export class LissajousToken extends Contract {
       overrides?: Overrides
     ): Promise<BigNumber>;
 
-    sortedColorList(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "sortedColorList(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    startBlock(overrides?: CallOverrides): Promise<BigNumber>;
-
-    "startBlock()"(overrides?: CallOverrides): Promise<BigNumber>;
-
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
@@ -1646,43 +958,13 @@ export class LissajousToken extends Contract {
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    tokenColor(
-      tokenIndex: BigNumberish,
+    tokenContentHashes(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
-    "tokenColor(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    tokenMintBlock(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "tokenMintBlock(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    tokenMintBlockHash(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "tokenMintBlockHash(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    tokenMintValue(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<BigNumber>;
-
-    "tokenMintValue(uint256)"(
-      tokenIndex: BigNumberish,
+    "tokenContentHashes(uint256)"(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<BigNumber>;
 
@@ -1742,14 +1024,6 @@ export class LissajousToken extends Contract {
   };
 
   populateTransaction: {
-    _priceIncreasePromille(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "_priceIncreasePromille()"(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
     approve(
       to: string,
       tokenId: BigNumberish,
@@ -1760,16 +1034,6 @@ export class LissajousToken extends Contract {
       to: string,
       tokenId: BigNumberish,
       overrides?: Overrides
-    ): Promise<PopulatedTransaction>;
-
-    aspectRatio(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "aspectRatio(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
     balanceOf(
@@ -1786,16 +1050,6 @@ export class LissajousToken extends Contract {
 
     "baseURI()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    currentMinPrice(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "currentMinPrice()"(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    endBlock(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "endBlock()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     getApproved(
       tokenId: BigNumberish,
       overrides?: CallOverrides
@@ -1803,16 +1057,6 @@ export class LissajousToken extends Contract {
 
     "getApproved(uint256)"(
       tokenId: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    hashBlock(
-      blockNumber: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "hashBlock(uint256)"(
-      blockNumber: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
@@ -1828,55 +1072,15 @@ export class LissajousToken extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    isBlockRainbow(
-      blockNumber: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "isBlockRainbow(uint256)"(
-      blockNumber: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    isHashRainbow(
-      blockHash: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "isHashRainbow(bytes32)"(
-      blockHash: BytesLike,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    lissajousArguments(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "lissajousArguments(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    minPrice(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "minPrice(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    mint(
+    mintAndBuy(
       to: string,
-      amount: BigNumberish,
+      contentHash: BytesLike,
       overrides?: PayableOverrides
     ): Promise<PopulatedTransaction>;
 
-    "mint(address,uint8)"(
+    "mintAndBuy(address,bytes32)"(
       to: string,
-      amount: BigNumberish,
+      contentHash: BytesLike,
       overrides?: PayableOverrides
     ): Promise<PopulatedTransaction>;
 
@@ -1898,31 +1102,9 @@ export class LissajousToken extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    priceStepFromValue(
-      valuePerToken: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    pricePerToken(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
-    "priceStepFromValue(uint256)"(
-      valuePerToken: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    priceSteps(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "priceSteps(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    rainbowFrequency(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "rainbowFrequency()"(
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
+    "pricePerToken()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
 
     renounceOwnership(overrides?: Overrides): Promise<PopulatedTransaction>;
 
@@ -1955,20 +1137,6 @@ export class LissajousToken extends Contract {
       overrides?: Overrides
     ): Promise<PopulatedTransaction>;
 
-    sortedColorList(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "sortedColorList(uint256)"(
-      arg0: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    startBlock(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
-    "startBlock()"(overrides?: CallOverrides): Promise<PopulatedTransaction>;
-
     supportsInterface(
       interfaceId: BytesLike,
       overrides?: CallOverrides
@@ -1993,43 +1161,13 @@ export class LissajousToken extends Contract {
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    tokenColor(
-      tokenIndex: BigNumberish,
+    tokenContentHashes(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
-    "tokenColor(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    tokenMintBlock(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "tokenMintBlock(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    tokenMintBlockHash(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "tokenMintBlockHash(uint256)"(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    tokenMintValue(
-      tokenIndex: BigNumberish,
-      overrides?: CallOverrides
-    ): Promise<PopulatedTransaction>;
-
-    "tokenMintValue(uint256)"(
-      tokenIndex: BigNumberish,
+    "tokenContentHashes(uint256)"(
+      arg0: BigNumberish,
       overrides?: CallOverrides
     ): Promise<PopulatedTransaction>;
 
