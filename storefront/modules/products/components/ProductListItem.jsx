@@ -16,11 +16,8 @@ const ProductListItem = ({product}) => {
                 <img src={getProductMediaUrl(product)} />
               </figure>
               <div className="list-item-text p-1 text-center">
-                <div className="font-weight-bold text-uppercase">
-                  {product?.texts?.vendor}
-                </div>
                 <small className="mt-1 d-block mb-0 opacity-8">
-                  <i>{product?.texts?.title},</i> {product?.wengAttributes?.year}
+                  <i>{product?.texts?.title}</i>
                 </small>
                   <small className="mt-2 d-block">
                     {product?.simulatedPrice?.price}
