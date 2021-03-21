@@ -7,7 +7,6 @@ import {
 } from '@private/contracts';
 
 type Transaction = {
-  amount: number;
   price: BigNumber;
   tx?: ethers.ContractTransaction;
 };
@@ -38,6 +37,7 @@ export const AppContext = React.createContext<{
   tokens: Token[];
   recordToken: (t: Token) => void;
   balance?: BigNumber;
+  mint: (hash: string) => Promise<boolean>;
 }>({
   accounts: [],
   connect: () => null,
@@ -45,6 +45,7 @@ export const AppContext = React.createContext<{
   addTransaction: () => null,
   tokens: [],
   recordToken: () => null,
+  mint: () => null,
 });
 
 export const useAppContext = () => useContext(AppContext);
@@ -155,7 +156,7 @@ export const AppContextWrapper = ({ children }) => {
 
   const addTransaction = (tx) => {
     setTransactions((current) => [
-      { ...tx, amount: parseInt(tx.amount.toString(), 10) }, // HACK to ensure amount is a number
+      { ...tx }, // HACK to ensure amount is a number
       ...current,
     ]);
     tx.tx.wait().then(() => {
@@ -165,6 +166,24 @@ export const AppContextWrapper = ({ children }) => {
         ),
       );
     });
+  };
+
+  const mint = async (hash) => {
+    if (!accounts[0]) {
+      await connect();
+    }
+
+    const contentHex = ethers.utils.formatBytes32String(hash);
+    const contentHash = ethers.utils.sha256(contentHex);
+    const contentHashBytes = ethers.utils.arrayify(contentHash);
+
+    const tx = await writeContract.mintAndBuy(accounts[0], contentHashBytes, {
+      value: ethers.utils.parseEther('0.1'),
+    });
+
+    addTransaction({ price: ethers.utils.parseEther('0.1'), tx });
+
+    alert('Mint is on the way');
   };
 
   return (
@@ -181,6 +200,7 @@ export const AppContextWrapper = ({ children }) => {
         tokens,
         recordToken,
         balance,
+        mint,
       }}
     >
       {children}
