@@ -1,4 +1,3 @@
-[![Codeship Status for xecutors/weng-website](https://app.codeship.com/projects/01299450-7351-0138-8da5-3e050f4a40ff/status?branch=master)](https://app.codeship.com/projects/395737)
 
 # Cryptomarket Project
 
@@ -23,3 +22,7 @@ Smart Contract
 4. Storefront
 
 Tech: Next.js (Node.js) + Apollo Client
+
+# License
+
+EUPL 1.2. If that license does not fit your needs, just get in touch: hello@unchained.shop
